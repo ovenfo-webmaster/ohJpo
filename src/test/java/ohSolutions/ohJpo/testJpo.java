@@ -306,6 +306,7 @@ SET NOCOUNT ON
 
     }
 	
+	@SuppressWarnings("unused")
 	@Test
     public void testInstanciaAutomática() throws Exception {
 		
