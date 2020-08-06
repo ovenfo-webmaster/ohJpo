@@ -2,9 +2,9 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>ovenfo</groupId>
+  <groupId>ohSolutions</groupId>
   <artifactId>ohJpo</artifactId>
-  <version>2.1.4</version>
+  <version>2.1.6</version>
   <packaging>jar</packaging>
 
   <name>ohJpo</name>
@@ -106,5 +106,7 @@ v1.5.7 - Names to English, header tag noBody, show result to json
 2.0.8 - Adding enum for methods
 2.0.9 - Adding reading environment from JPO_HOME, Smart Conection
 2.1.0 - Fixing problems
-2.1.4 - Aligning versions</description>
+2.1.4 - Aligning versions
+2.1.5 - Fixing bug
+2.1.6 - Changing java 1.8</description>
 </project>
