@@ -5,7 +5,6 @@
   <groupId>ohSolutions</groupId>
   <artifactId>ohJpo</artifactId>
   <version>2.1.6</version>
-  <packaging>jar</packaging>
 
   <name>ohJpo</name>
   <url>http://maven.apache.org</url>
@@ -57,6 +56,24 @@
     	<version>8.2.0.jre8</version>
     </dependency>
   </dependencies>
+	<repositories>
+	  	<repository>
+		  <id>ovenfowebmaster</id>
+		  <url>https://pkgs.dev.azure.com/ovenfowebmaster/_packaging/ovenfowebmaster/maven/v1</url>
+		  <releases>
+		    <enabled>true</enabled>
+		  </releases>
+		  <snapshots>
+		    <enabled>true</enabled>
+		  </snapshots>
+		</repository>
+	</repositories>
+	<distributionManagement>
+		<repository>
+			<id>ovenfowebmaster</id>
+			<url>https://pkgs.dev.azure.com/ovenfowebmaster/_packaging/ovenfowebmaster/maven/v1</url>
+		</repository>
+	</distributionManagement>
   <description>v1.5.1 Carga de campos por body
 v1.5.2 - Se quitó comentarios en el systemout
 v1.5.3 - Bug al no obtener respuesta cuando al mostrar el primer registro estaba en true
@@ -108,5 +125,5 @@ v1.5.7 - Names to English, header tag noBody, show result to json
 2.1.0 - Fixing problems
 2.1.4 - Aligning versions
 2.1.5 - Fixing bug
-2.1.6 - Changing java 1.8</description>
+2.1.6 - Changing java 1.8 - Last commit java 8</description>
 </project>
