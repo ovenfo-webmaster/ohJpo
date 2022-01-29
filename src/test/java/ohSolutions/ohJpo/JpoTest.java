@@ -415,7 +415,7 @@ SET NOCOUNT ON
 	}
 	
 	@SuppressWarnings("unused")
-	@Test
+	//@Test
     public void testOutputEmpty() throws Exception {
 		
         Map<String, String> config = new HashMap<String, String>();
