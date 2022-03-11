@@ -70,8 +70,8 @@
 	</dependencies>
 	<repositories>
 		<repository>
-		  <id>ovenfowebmaster</id>
-		  <url>https://pkgs.dev.azure.com/ovenfowebmaster/ovenfo/_packaging/website/maven/v1</url>
+			<id>apmtis</id>
+			<url>https://pkgs.dev.azure.com/apmtis/_packaging/apmtis/maven/v1</url> 
 		  <releases>
 			<enabled>true</enabled>
 		  </releases>
@@ -82,8 +82,8 @@
 	</repositories>
 	<distributionManagement>
 		<repository>
-			<id>ovenfowebmaster</id>
-			<url>https://pkgs.dev.azure.com/ovenfowebmaster/ovenfo/_packaging/website/maven/v1</url>
+			<id>apmtis</id>
+			<url>https://pkgs.dev.azure.com/apmtis/_packaging/apmtis/maven/v1</url> 
 		</repository>
 	</distributionManagement>
 	<description>mvn deploy -DskipTests
