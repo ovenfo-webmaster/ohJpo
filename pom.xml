@@ -5,7 +5,7 @@
 
 	<groupId>ohSolutions</groupId>
 	<artifactId>ohJpo</artifactId>
-	<version>2.2.0.3</version>
+	<version>2.2.0.6</version>
 	<packaging>jar</packaging>
 
 	<name>ohJpo</name>
@@ -60,13 +60,12 @@
 		    <artifactId>mssql-jdbc</artifactId>
 		    <version>9.1.0.jre11-preview</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql 
+		<!-- 
 		<dependency>
 		    <groupId>org.postgresql</groupId>
 		    <artifactId>postgresql</artifactId>
 		    <version>42.2.18</version>
-		</dependency>
--->
+		</dependency> -->
 	</dependencies>
 	<repositories>
 		<repository>
@@ -91,5 +90,6 @@
 v2.2.0.0
 v2.2.0.1 - Fix log4j vulnerability
 v2.2.0.2 - Fix log4j vulnerability
-v2.2.0.3 - Fix log4j vulnerability</description>
+v2.2.0.3 - Fix log4j vulnerability
+v2.2.0.6 - Add print stack when procedure fail</description>
 </project>

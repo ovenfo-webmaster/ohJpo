@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
-
 import com.google.gson.Gson;
 
 import ohSolutions.ohJpo.dao.Jpo;
@@ -433,6 +431,44 @@ SET NOCOUNT ON
 		Object dasd = pResult.execute(true);
 		System.out.println(dasd);
 		
+	}
+	
+	//@Test
+	public void testMultipleConnections() throws Exception {
+		
+        Map<String, String> configA = new HashMap<String, String>();
+
+        
+        Jpo miJpoA = new Jpo(configA);
+        	miJpoA.setData("BUI", "menu_base_id", "40329");
+        
+		Procedure pResult = miJpoA.procedure("seg.menu_listar_nuevo","BUI");
+				  pResult.input("menu_base_id", Jpo.DECIMAL);
+		Object ohb_responseA = pResult.executeL();
+		
+		
+		
+		
+		
+        Map<String, String> configB = new HashMap<String, String>();
+
+		
+        Jpo miJpoB = new Jpo(configB);
+        	miJpoB.setData("BUI", "proyecto_id" , "2");
+		
+		Procedure pResultB = miJpoB.procedure("bui.plantilla_menu_listar","BUI");
+				  pResultB.input("proyecto_id", Jpo.INTEGER);
+				  pResultB.output("plantillas", Jpo.RESULT);
+		Object ohb_responseB = pResultB.executeL();
+		
+		
+		
+		System.out.println(ohb_responseA);
+		System.out.println(ohb_responseB);
+		
+		miJpoA.finalizar();
+		miJpoB.finalizar();
+
 	}
 	
 }

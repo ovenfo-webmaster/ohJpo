@@ -103,6 +103,7 @@ public class Procedure {
 		} catch(Exception e) {
 			logger.info("t<"+(System.currentTimeMillis() - time_init)+"> "+query);
 			logger.debug("input: "+new Gson().toJson(campos));
+			e.printStackTrace();
 			logger.error(e.getMessage());
 			throw new Exception(e);
 		}
@@ -112,7 +113,6 @@ public class Procedure {
 	public <T> T get(Type typeOfT) throws Exception{
 		Object resultado = ejecutar(false);
 		Gson gson = new Gson();
-		//System.out.println(gson.toJson(resultado));
 		return gson.fromJson(gson.toJson(resultado), typeOfT);
 	}
 	

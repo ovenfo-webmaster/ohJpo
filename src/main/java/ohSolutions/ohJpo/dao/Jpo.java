@@ -309,8 +309,6 @@ public class Jpo {
 	}
 	
 	public Connection getConexion() throws Exception {
-		//System.out.println("getConexion");
-		//System.out.println(c);
 		if(c == null) {
 			getConexion(isAutocommit);
 		}
@@ -727,7 +725,6 @@ public class Jpo {
 	
 	public void finalizar() throws SQLException {
 		if(c != null && !c.isClosed()){
-			//System.out.println("Desconectando "+this.getSourceInfo()+" | "+this.hashConection);
 			logger.debug("Desconentando de "+ db +"' correctamente en : "+url);
 			c.close();
 		}
