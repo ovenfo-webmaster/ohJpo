@@ -10,7 +10,7 @@
 
 	<name>ohJpo</name>
 	<description>Ovenfo database connection</description>
-	<url>https://github.com/ovenfo-webmaster/ovnLanding</url>
+	<url>https://github.com/ovenfo-webmaster/ohJpo</url>
 	
 	<distributionManagement>
 		<snapshotRepository>
