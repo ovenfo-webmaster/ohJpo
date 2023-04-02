@@ -703,19 +703,6 @@ public class Jpo {
 		return this;
 	}
 	
-	/**
-	 * Estaba escrito mal
-	 *
-	 * @deprecated use {@link #new()} instead.  
-	 */
-	@Deprecated
-	public Jpo roJllback() throws SQLException {
-		if(c != null && !c.isClosed() && !c.getAutoCommit()){
-			c.rollback();
-		}
-		return this;
-	}
-	
 	public Jpo rollback() throws SQLException {
 		if(c != null && !c.isClosed() && !c.getAutoCommit()){
 			c.rollback();

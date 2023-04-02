@@ -3,13 +3,48 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>ohSolutions</groupId>
+	<groupId>com.ovenfo</groupId>
 	<artifactId>ohJpo</artifactId>
-	<version>2.2.0.6</version>
+	<version>2.3.0</version>
 	<packaging>jar</packaging>
 
 	<name>ohJpo</name>
-	<url>http://maven.apache.org</url>
+	<description>Ovenfo database connection</description>
+	<url>https://github.com/ovenfo-webmaster/ovnLanding</url>
+	
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+	
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License version 3</name>
+			<url>https://opensource.org/license/lgpl-3-0/</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:https://github.com/ovenfo-webmaster/ohJpo</connection>
+		<developerConnection>scm:git:ssh://git@github.com:ovenfo-webmaster/ohJpo.git</developerConnection>
+		<url>https://github.com/ovenfo-webmaster/ohJpo</url>
+		<tag>v@{project.version}</tag>
+	</scm>
+
+	<developers>
+		<developer>
+			<name>Oscar H.</name>
+			<email>ovenfo.webmaster@gmail.com</email>
+			<organization>Ovenfo</organization>
+			<organizationUrl>https://ovenfo.com/</organizationUrl>
+		</developer>
+	</developers>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -67,29 +102,75 @@
 		    <version>42.2.18</version>
 		</dependency> -->
 	</dependencies>
-	<repositories>
-		<repository>
-		  <id>ovenfowebmaster</id>
-		  <url>https://pkgs.dev.azure.com/ovenfowebmaster/_packaging/ovenfowebmaster/maven/v1</url>
-		  <releases>
-			<enabled>true</enabled>
-		  </releases>
-		  <snapshots>
-			<enabled>true</enabled>
-		  </snapshots>
-		</repository>
-	</repositories>
-	<distributionManagement>
-		<repository>
-		  <id>ovenfowebmaster</id>
-		  <url>https://pkgs.dev.azure.com/ovenfowebmaster/_packaging/ovenfowebmaster/maven/v1</url>
-		</repository>
-	</distributionManagement>
-	<description>mvn deploy -DskipTests
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.2</version>
+				<configuration>
+					<excludes>
+						<exclude />
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+						<configuration>
+							<keyname>${gpg.keyname}</keyname>
+							<passphraseServerId>${gpg.keyname}</passphraseServerId>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
-v2.2.0.0
-v2.2.0.1 - Fix log4j vulnerability
-v2.2.0.2 - Fix log4j vulnerability
-v2.2.0.3 - Fix log4j vulnerability
-v2.2.0.6 - Add print stack when procedure fail</description>
 </project>

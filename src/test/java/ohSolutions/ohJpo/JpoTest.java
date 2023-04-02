@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Test;
+
 import com.google.gson.Gson;
 
 import ohSolutions.ohJpo.dao.Jpo;
@@ -470,5 +472,60 @@ SET NOCOUNT ON
 		miJpoB.finalizar();
 
 	}
+	
+    @SuppressWarnings("unchecked")
+	//@Test
+    public void testConectionSQLiteLast() throws Exception {
+
+        /* in application.properties
+            jpo.ds.type=SQLITE
+            jpo.ds.url=C:\\odhp\\dsolutions\\dgeneradorData\\bd
+            jpo.ds.db=dgenerador.db
+        * */ 
+    	
+        Map<String, String> config = new HashMap<String, String>();
+
+        config.put("type", "SQLITE");
+        config.put("url", "C:\\david\\wks\\database");
+        config.put("db", "controller_control.db");
+        
+        Jpo miJpo = new Jpo(config);
+        
+        Tabla tNumerator = miJpo.tabla("numerator");
+        
+        tNumerator.donde("numerator_id = 1");
+        
+        Map<String, Object> oLastNumerator = (Map<String, Object>) tNumerator.obtener("last_numerator");
+       
+        //System.out.println((new Gson(oLastNumerator)).toJson());
+        
+        int lastNumerator = (int) oLastNumerator.get("last_numerator");
+
+        System.out.println(lastNumerator);
+        
+        
+        
+        tNumerator.setData("last_numerator", "250");
+        tNumerator.editar();
+        miJpo.commit();
+        
+        System.out.println("Editado");
+        
+
+        miJpo.finalizar();
+        
+        /*
+         * 
+		<dependency>
+    <groupId>org.xerial</groupId>
+    <artifactId>sqlite-jdbc</artifactId>
+    <version>3.39.4.1</version>
+</dependency>
+         * */
+        
+        
+        
+
+    }
 	
 }
