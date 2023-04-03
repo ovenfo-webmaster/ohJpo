@@ -31,7 +31,7 @@
 	</licenses>
 
 	<scm>
-		<connection>scm:git:https://github.com/ovenfo-webmaster/ohJpo</connection>
+		<connection>scm:git:git://github.com/ovenfo-webmaster/ohJpo.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com:ovenfo-webmaster/ohJpo.git</developerConnection>
 		<url>https://github.com/ovenfo-webmaster/ohJpo</url>
 		<tag>v@{project.version}</tag>
