@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Test;
+
 import com.google.gson.Gson;
 
 import ohSolutions.ohJpo.dao.Jpo;
@@ -17,17 +19,17 @@ import ohSolutions.ohJpo.dao.Tabla;
 public class JpoTest {
 
     //@Test
-    public void testConectionSQLite() throws Exception {
+    public void testSQLite() throws Exception {
 
         /* in application.properties
             jpo.ds.type=SQLITE
-            jpo.ds.url=C:\\odhp\\dsolutions\\dgeneradorData\\bd
+            jpo.ds.url=C:\\myfold\\dsolutions\\data\\bd
             jpo.ds.db=dgenerador.db
         * */ 
 
         Jpo miJpo = new Jpo();
         // Discomment for test
-        //System.out.println("Resultado de prueba");
+        //System.out.println("Test executed");
         //System.out.println((new Gson()).toJson(miJpo.tabla("proyecto").seleccionar("*")));
 
         miJpo.finalizar();
@@ -35,17 +37,17 @@ public class JpoTest {
     }
 
     //@Test
-    public void testConectionSQLiteConfig() throws Exception {
+    public void testSQLiteConfig() throws Exception {
 
         Map<String, String> config = new HashMap<String, String>();
 
         config.put("type", "SQLITE");
-        config.put("url", "C:\\odhp\\dsolutions\\dgeneradorData\\bd");
-        config.put("db", "dgenerador.db");
+        config.put("url", "C:\\myfolder\\myproject\\myapp\\bd");
+        config.put("db", "mydb.db");
 
         Jpo miJpo = new Jpo(config);
 
-        System.out.println("Resultado de prueba");
+        System.out.println("Result test");
         System.out.println((new Gson()).toJson(miJpo.tabla("proyecto").seleccionar("*")));
 
         miJpo.finalizar();
@@ -53,20 +55,20 @@ public class JpoTest {
     }
 
     //@Test
-    public void testConectionSQLServer() throws Exception {
+    public void testSQLServer() throws Exception {
 
         /* in application.properties
             jpo.ds.type=SQLSERVER
-            jpo.ds.url=10.10.10.37
-            jpo.ds.db=MILLENIUMDEV
+            jpo.ds.url=192.168.1.20
+            jpo.ds.db=MYDB
             jpo.ds.scheme=
-            jpo.ds.username=sa
-            jpo.ds.password=Pr0t0c0l0
+            jpo.ds.username=user
+            jpo.ds.password=password1
         * */
 
         Jpo miJpo = new Jpo();
 
-        System.out.println("Resultado de prueba");
+        System.out.println("Result");
         System.out.println((new Gson()).toJson(miJpo.tabla("COMTC_ROL").seleccionar("*")));
 
         miJpo.finalizar();
@@ -74,19 +76,19 @@ public class JpoTest {
     }
 
     //@Test
-    public void testConectionSQLServerFromDS() throws Exception {
+    public void testSQLServerFromDS() throws Exception {
 
         /* in application.properties
-            spring.datasource.url=jdbc:sqlserver://10.10.10.37;databaseName=MILLENIUMDEV
-            spring.datasource.username=sa
-            spring.datasource.password=Pr0t0c0l0
+            spring.datasource.url=jdbc:sqlserver://192.168.1.23;databaseName=mydatabase
+            spring.datasource.username=user
+            spring.datasource.password=test
             spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
             jpo.ds.source=spring.datasource
         * */
 
         Jpo miJpo = new Jpo();
 
-        System.out.println("Resultado de prueba");
+        System.out.println("Result");
         System.out.println((new Gson()).toJson(miJpo.tabla("COMTC_ROL").seleccionar("*")));
 
         miJpo.finalizar();
@@ -94,41 +96,41 @@ public class JpoTest {
     }
 
     //@Test
-    public void testConsultaBoolean() throws Exception {
+    public void testBoolean() throws Exception {
 
         /* in application.properties
-            spring.datasource.url=jdbc:sqlserver://10.10.10.37;databaseName=MILLENIUMDEV
-            spring.datasource.username=sa
-            spring.datasource.password=Pr0t0c0l0
+            spring.datasource.url=jdbc:sqlserver://192.168.1.200;databaseName=mydatabase
+            spring.datasource.username=userp
+            spring.datasource.password=passw0rd1
             spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
             jpo.ds.source=spring.datasource
         * */
 
         Jpo miJpo = new Jpo();
 
-        System.out.println("Resultado de prueba");
-        System.out.println((new Gson()).toJson(miJpo.tabla("VACTV_EIR").donde("EIR_C_NUMERO = '0000757933'").seleccionar("*")));
+        System.out.println("Result");
+        System.out.println((new Gson()).toJson(miJpo.tabla("mytable").donde("myid = '34343'").seleccionar("*")));
 
         miJpo.finalizar();
 
     }
 
     //@Test
-    public void testConsultaFechaHora() throws Exception {
+    public void testQueryDatetime() throws Exception {
 
         /* in application.properties
-            spring.datasource.url=jdbc:sqlserver://10.10.10.37;databaseName=MILLENIUMDEV
-            spring.datasource.username=sa
-            spring.datasource.password=Pr0t0c0l0
+            spring.datasource.url=jdbc:sqlserver://192.168.1.35;databaseName=mydatabase
+            spring.datasource.username=user
+            spring.datasource.password=passw
             spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
             jpo.ds.source=spring.datasource
         * */
 
         Jpo jpo = new Jpo();
 
-        Procedimiento pDetalle = jpo.procedimiento("LIS_AVISO");
-        pDetalle.entrada("CodigoProyecto", Jpo.CADENA);
-        pDetalle.entrada("Fecha", Jpo.FECHAHORA);
+        Procedimiento pDetalle = jpo.procedimiento("mystoreprocedure");
+        pDetalle.entrada("projectcode", Jpo.CADENA);
+        pDetalle.entrada("date", Jpo.FECHAHORA);
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
         System.out.println(dateFormat.format(date));
@@ -137,7 +139,7 @@ public class JpoTest {
 
         jpo.finalizar();
 
-        System.out.println("Resultado de prueba");
+        System.out.println("Result");
         System.out.println((new Gson()).toJson(resultado));
 
 
@@ -149,58 +151,43 @@ public class JpoTest {
         Map<String, String> config = new HashMap<String, String>();
 
         config.put("type", "SQLSERVER");
-        config.put("url", "10.10.10.37");
-        config.put("db", "db_averias");
-        config.put("username", "sa");
-        config.put("password", "Pr0t0c0l0");
+        config.put("url", "192.168.1.22");
+        config.put("db", "mydb");
+        config.put("username", "user");
+        config.put("password", "passw0rd1");
         
         Jpo ppo = new Jpo(config);
         
-        ppo.setData("FLG", "xmlParametro", "<Row><linea><AveriaID>1</AveriaID><LugarID>25</LugarID><DetalleInspeccionID>93838</DetalleInspeccionID><UsuarioID>22</UsuarioID><OrdenAveria>1</OrdenAveria><Area>2</Area><SubArea>1</SubArea><Dano>1</Dano><Severidad>2</Severidad><Reparo>Z</Reparo><Observacion>asdas</Observacion><OrdenInspeccion></OrdenInspeccion><Nombre></Nombre><Valor></Valor><InspeccionID>2508</InspeccionID><CodigoVin>LZWACAGA2JE600889</CodigoVin><WareHouseID>1</WareHouseID><ClienteID>8</ClienteID><Ubicacion></Ubicacion><GuiaRemision></GuiaRemision></linea></Row>");
+        ppo.setData("FLG", "xmlParametro", "<myrow><line><product>1</product></line></myrow>");
         
-		Procedure pResult = ppo.procedure("Averias_Insert","FLG");
-		pResult.input("xmlParametro", Jpo.XML);
-		pResult.output("mensaje", Jpo.STRING);
-		pResult.output("estadoProceso", Jpo.CHARACTER);
+		Procedure pResult = ppo.procedure("mystoreprocedure","mys");
+		pResult.input("xmlparam", Jpo.XML);
+		pResult.output("message", Jpo.STRING);
+		pResult.output("result", Jpo.CHARACTER);
 		Object response = pResult.executeL();
 		ppo.commit();
 		ppo.finalizar();
-        System.out.println("Resultado de prueba");
+        System.out.println("Result");
         System.out.println((new Gson()).toJson(response));
 
         
     }
-    
-	/*USE [Inland]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-ALTER PROC [seg].[menu_configuraciones] 
-	@estado INT OUT,
-	@mensaje varchar(max) OUT 
-AS
 
-SET NOCOUNT ON 
-
-	SELECT catalogo_id, descricion_larga FROM ges.catalogo WHERE catalogo_padre_id = 30821 ORDER BY catalogo_id 
-	 * */
 	//@Test
     @SuppressWarnings("unused")
-	public void testProcedureParseData() throws Exception {
+	public void testParseData() throws Exception {
 
         Map<String, String> config = new HashMap<String, String>();
 
         config.put("type", "SQLSERVER");
-        config.put("url", "10.10.10.51");
-        config.put("db", "Inland");
-        config.put("username", "sa");
-        config.put("password", "Pr0t0c0l0");
+        config.put("url", "192.168.1.33");
+        config.put("db", "mydb");
+        config.put("username", "myuser");
+        config.put("password", "mypassword11");
 
         Jpo miJpo = new Jpo(config);
         
-        Procedure store = miJpo.procedure("seg.menu_configuraciones");
+        Procedure store = miJpo.procedure("menu_configurations");
         /*
         List<MenuConfiguracionMas> outputList = store.get(new TypeToken<List<MenuConfiguracionMas>>(){}.getType());
         
@@ -215,24 +202,6 @@ SET NOCOUNT ON
 
     }
 
-	/*USE [Inland]
-GO
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-ALTER PROC [seg].[menu_configuraciones_test] 
-	@estado INT OUT,
-	@mensaje varchar(max) OUT 
-AS
-
-SET NOCOUNT ON 
-
-	SELECT catalogo_id, descricion_larga FROM ges.catalogo WHERE catalogo_padre_id = 30821 ORDER BY catalogo_id 
-
-	SELECT * FROM ges.catalogo WHERE catalogo_padre_id = 30821 ORDER BY catalogo_id ASC
-	 * */
-
 	//@Test
     @SuppressWarnings("unused")
 	public void testProcedureParseDataMultiple() throws Exception {
@@ -240,14 +209,14 @@ SET NOCOUNT ON
         Map<String, String> config = new HashMap<String, String>();
 
         config.put("type", "SQLSERVER");
-        config.put("url", "10.10.10.51");
-        config.put("db", "Inland");
-        config.put("username", "sa");
-        config.put("password", "Pr0t0c0l0");
+        config.put("url", "192.168.1.22");
+        config.put("db", "mydb");
+        config.put("username", "myuser");
+        config.put("password", "mypass");
 
         Jpo miJpo = new Jpo(config);
         
-        Procedure store = miJpo.procedure("seg.menu_configuraciones_test");
+        Procedure store = miJpo.procedure("my.sp");
         
         //List<MenuConfiguracion> conf = store.get(0, new TypeToken<List<MenuConfiguracion>>(){}.getType());
         //List<MenuConfiguracionMas> conf_mas = store.get(1, new TypeToken<List<MenuConfiguracionMas>>(){}.getType());
@@ -268,27 +237,16 @@ SET NOCOUNT ON
 
     }
 	
-	/*
-	 * ALTER PROC [seg].[menu_configuraciones_testb] 
-	@estado INT OUT,
-	@mensaje varchar(max) OUT 
-AS
-
-SET NOCOUNT ON 
-	
-	set @estado = 1
-	set @mensaje = 'Hola'
-	 * */
 	//@Test
     public void testProcedureParseDataSalida() throws Exception {
 
         Map<String, String> config = new HashMap<String, String>();
 
         config.put("type", "SQLSERVER");
-        config.put("url", "10.10.10.51");
-        config.put("db", "Inland");
-        config.put("username", "sa");
-        config.put("password", "Pr0t0c0l0");
+        config.put("url", "192.168.1.55");
+        config.put("db", "mydb");
+        config.put("username", "myuser");
+        config.put("password", "mypassword");
 
         Jpo miJpo = new Jpo(config);
         
@@ -312,28 +270,28 @@ SET NOCOUNT ON
         Map<String, String> config = new HashMap<String, String>();
 
         config.put("type", "SQLSERVER");
-        config.put("url", "10.10.10.51");
-        config.put("db", "Inland");
-        config.put("username", "sa");
-        config.put("password", "Pr0t0c0l0");
+        config.put("url", "192.168.1.55");
+        config.put("db", "mydb");
+        config.put("username", "myuser");
+        config.put("password", "mypassword");
 
-		System.out.println("--> Inicio");
+		System.out.println("--> start");
 		
         Jpo miJpo = new Jpo(config);
         
         System.out.println(miJpo.hashConection);
        
-        Procedure store = miJpo.procedure("seg.sistema_fecha");
+        Procedure store = miJpo.procedure("env.system");
         /*Object data = store.ejecutar();
         System.out.println(data);
 */
-        Tabla usr = miJpo.tabla("seg.usuario");
+        Tabla usr = miJpo.tabla("usr.tab");
         /*Object data_user = usr.seleccionar("id, correo, nombres");
         System.out.println(data_user);
         */
         
          
-		System.out.println("--> Finalizo");
+		System.out.println("--> finish");
 	}
 	
 	//@Test
@@ -343,18 +301,18 @@ SET NOCOUNT ON
         Map<String, String> config = new HashMap<String, String>();
 
         config.put("type", "SQLSERVER");
-        config.put("url", "10.10.10.51");
-        config.put("db", "Inland");
-        config.put("username", "sa");
-        config.put("password", "Pr0t0c0l0");
+        config.put("url", "192.168.1.55");
+        config.put("db", "mydb");
+        config.put("username", "myuser");
+        config.put("password", "mypassword");
 
-		System.out.println("--> Inicio");
+		System.out.println("--> Start");
 		
         Jpo miJpo = new Jpo(config);
         
-		Procedure pEmail = miJpo.procedure("bpm.tarea_correo_pendiente_enviar");
-		pEmail.input("usuario_id", "1", Jpo.INTEGER);
-		pEmail.input("instancia_tarea_id", "10553", Jpo.INTEGER);
+		Procedure pEmail = miJpo.procedure("seg.mysp");
+		pEmail.input("user", "1", Jpo.INTEGER);
+		pEmail.input("instancetask", "10553", Jpo.INTEGER);
 		
 		List<Object> rEmail = (List<Object>) pEmail.executeL(true); // [1, , {"id":155910}
 		
@@ -364,38 +322,27 @@ SET NOCOUNT ON
 
 	//@Test
     public void testAccess() throws Exception {
-		Jpo ppo = new Jpo("dsbachero", null);
+		Jpo ppo = new Jpo("batcher", null);
 		System.out.println(ppo.hashConection);
 		System.out.println(ppo.getSourceInfo());
 		ppo.finalizar();
     }
     
-	@SuppressWarnings("unused")
 	//@Test
     public void testPGSQL() throws Exception {
-		/*
-        Map<String, String> config = new HashMap<String, String>();
 
-        config.put("type", "POSTGRESQL");
-        config.put("url", "postgresqlpilotodevopsdev.postgres.database.azure.com");
-        config.put("db", "dgenerador");
-        config.put("username", "adminpostgresql@postgresqlpilotodevopsdev");
-        config.put("password", "5YG6T#W~CgP%#7&,");
-*/
-		System.out.println("--> Inicio");
+		System.out.println("--> Start");
 		
-        Jpo miJpo = new Jpo("{}", "dsbachero", null, null);
+        Jpo miJpo = new Jpo("{}", "mydatabssource", null, null);
         
         System.out.println(miJpo.hashConection);
- 	   System.out.println("------------------------------------------------------------------");
- 	   System.out.println("public Function<Jpo, Object> buiinicializar()");
- 	   System.out.println(miJpo.getSourceInfo());
+ 	   	System.out.println(miJpo.getSourceInfo());
        
-        Tabla usr = miJpo.tabla("bui.usuario");
+        Tabla usr = miJpo.tabla("schema.table");
         Object data_user = usr.seleccionar("*");
         System.out.println(data_user);
         
-		System.out.println("--> Finalizo");
+		System.out.println("--> Finish");
 	}
 	
 	//@Test
@@ -404,30 +351,28 @@ SET NOCOUNT ON
 		  Jpo ppo = new Jpo();
 
 		  System.out.println(ppo.getSourceInfo());
-		  // SQLSERVER|pilotodbqa.database.windows.net|maersk-apmtis-sqlserver-inland-dev||adminsqlqa|H${:3Q]pE7X&N7JW
 		  System.out.println(System.getenv().get("JPO_DS_URL"));
-	      Tabla usr = ppo.tabla("seg.usuario");
+	      Tabla usr = ppo.tabla("my.tab");
 	      Object data_user = usr.seleccionar("*");
 	      System.out.println(data_user);
 		
 	}
 	
-	@SuppressWarnings("unused")
 	//@Test
     public void testOutputEmpty() throws Exception {
 		
         Map<String, String> config = new HashMap<String, String>();
 
         config.put("type", "SQLSERVER");
-        config.put("url", "pesazu039db04.database.windows.net");
-        config.put("db", "tucontenedor_qa");
-        config.put("username", "adminapm");
-        config.put("password", "Pr0t0c0l0");
+        config.put("url", "mydatabase");
+        config.put("db", "mydb");
+        config.put("username", "user");
+        config.put("password", "pass");
         
         Jpo miJpo = new Jpo(config);
         
-		Procedure pResult = miJpo.procedure("ges.catalogo_detalle_obtener","ADM");
-		pResult.input("catalogo_id", Jpo.STRING);
+		Procedure pResult = miJpo.procedure("sch.table","TAB");
+		pResult.input("cat_id", Jpo.STRING);
 		Object dasd = pResult.execute(true);
 		System.out.println(dasd);
 		
@@ -440,28 +385,23 @@ SET NOCOUNT ON
 
         
         Jpo miJpoA = new Jpo(configA);
-        	miJpoA.setData("BUI", "menu_base_id", "40329");
+        	miJpoA.setData("BUI", "menu_id", "65555");
         
-		Procedure pResult = miJpoA.procedure("seg.menu_listar_nuevo","BUI");
+		Procedure pResult = miJpoA.procedure("seg.menu_list","BUI");
 				  pResult.input("menu_base_id", Jpo.DECIMAL);
 		Object ohb_responseA = pResult.executeL();
-		
-		
-		
 		
 		
         Map<String, String> configB = new HashMap<String, String>();
 
 		
         Jpo miJpoB = new Jpo(configB);
-        	miJpoB.setData("BUI", "proyecto_id" , "2");
+        	miJpoB.setData("BUI", "project_id" , "2");
 		
-		Procedure pResultB = miJpoB.procedure("bui.plantilla_menu_listar","BUI");
-				  pResultB.input("proyecto_id", Jpo.INTEGER);
-				  pResultB.output("plantillas", Jpo.RESULT);
+		Procedure pResultB = miJpoB.procedure("tab.mytable","BUI");
+				  pResultB.input("project_id", Jpo.INTEGER);
+				  pResultB.output("templates", Jpo.RESULT);
 		Object ohb_responseB = pResultB.executeL();
-		
-		
 		
 		System.out.println(ohb_responseA);
 		System.out.println(ohb_responseB);
@@ -475,17 +415,11 @@ SET NOCOUNT ON
 	//@Test
     public void testConectionSQLiteLast() throws Exception {
 
-        /* in application.properties
-            jpo.ds.type=SQLITE
-            jpo.ds.url=C:\\odhp\\dsolutions\\dgeneradorData\\bd
-            jpo.ds.db=dgenerador.db
-        * */ 
-    	
         Map<String, String> config = new HashMap<String, String>();
 
         config.put("type", "SQLITE");
-        config.put("url", "C:\\david\\wks\\database");
-        config.put("db", "controller_control.db");
+        config.put("url", "C:\\myfolder\\wks\\database");
+        config.put("db", "mydb.db");
         
         Jpo miJpo = new Jpo(config);
         
@@ -495,35 +429,71 @@ SET NOCOUNT ON
         
         Map<String, Object> oLastNumerator = (Map<String, Object>) tNumerator.obtener("last_numerator");
        
-        //System.out.println((new Gson(oLastNumerator)).toJson());
-        
         int lastNumerator = (int) oLastNumerator.get("last_numerator");
 
         System.out.println(lastNumerator);
-        
-        
         
         tNumerator.setData("last_numerator", "250");
         tNumerator.editar();
         miJpo.commit();
         
-        System.out.println("Editado");
+        System.out.println("Edited");
         
-
         miJpo.finalizar();
         
-        /*
-         * 
-		<dependency>
-    <groupId>org.xerial</groupId>
-    <artifactId>sqlite-jdbc</artifactId>
-    <version>3.39.4.1</version>
-</dependency>
-         * */
-        
-        
-        
-
     }
+    
+	@Test
+	public void testOracle() throws Exception {
+		
+        Map<String, String> config = new HashMap<String, String>();
+
+        config.put("type", "ORACLE");
+        config.put("url", "mydatabaseoracle:1521");
+        config.put("db", "mydb");
+        config.put("username", "user");
+        config.put("password", "password1");
+
+		System.out.println("--> Start");
+		
+        Jpo miJpo = new Jpo(config);
+        
+        
+		Procedure pList = miJpo.procedure("mysp");
+		pList.input("user", null, Jpo.STRING);
+		pList.input("pass", null, Jpo.STRING);
+		pList.output("c1", Jpo.RESULT);
+		pList.output("c2", Jpo.RESULT);
+		
+        System.out.println(pList.execute());
+ 
+	}
+    
+	@Test
+	public void testload() throws Exception {
+		
+        Map<String, String> config = new HashMap<String, String>();
+
+        config.put("type", "ORACLE");
+        config.put("url", "mydatabaseoracle:1521");
+        config.put("db", "mydb");
+        config.put("username", "user");
+        config.put("password", "password1");
+
+		System.out.println("--> Start");
+		
+        Jpo miJpo = new Jpo(config);
+        
+        
+		Procedure pList = miJpo.procedure("person_list");
+		pList.input("p_first_name", null, Jpo.STRING);
+		pList.input("p_last_name", null, Jpo.STRING);
+		pList.output("c1", Jpo.RESULT);
+		pList.output("c2", Jpo.RESULT);
+		
+        System.out.println(pList.execute());
+        
+	}
+	
 	
 }

@@ -65,6 +65,7 @@ public class Jpo {
 	public static String TYPE_SQLAZURE = "SQLAZURE";
 	public static String TYPE_SQLSERVER = "SQLSERVER";
 	public static String TYPE_MYSQL = "MYSQL";
+	public static String TYPE_ORACLE = "ORACLE";
 	
 	//public static int XML = 9;
 
@@ -278,6 +279,8 @@ public class Jpo {
 			return "jdbc:sqlite:"+url+"\\\\"+ db;
 		} else if(type.equals(Jpo.TYPE_POSTGRESQL)) {
 			return "jdbc:postgresql://"+url+"/"+ db;
+		} else if(type.equals(Jpo.TYPE_ORACLE)) {
+			return "jdbc:oracle:thin:@"+url+":"+db;
 		} else if(type.equals(Jpo.TYPE_SQLSERVER)) {
 			return "jdbc:sqlserver://"+url+";databaseName="+ db +";";
 		} else if(type.equals(Jpo.TYPE_SQLAZURE)) {
@@ -287,6 +290,8 @@ public class Jpo {
 		} else {
 			return "";
 		}
+		
+		
 	}
 
 	private String getNombreClase(){
@@ -299,6 +304,8 @@ public class Jpo {
 			return "org.postgresql.Driver";
 		} else if(type.equals(Jpo.TYPE_SQLSERVER)) {
 			return "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+		} else if(type.equals(Jpo.TYPE_ORACLE)) {
+			return "oracle.jdbc.OracleDriver";
 		} else if(type.equals(Jpo.TYPE_SQLAZURE)) {
 			return "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		} else if(type.equals(Jpo.TYPE_MYSQL)) {
@@ -328,6 +335,9 @@ public class Jpo {
 			}
 			if(type.equals(Jpo.TYPE_SQLAZURE)){
 				c = DriverManager.getConnection(getURL(type));
+			}
+			if(type.equals(Jpo.TYPE_ORACLE)){
+				c = DriverManager.getConnection(getURL(type), username, password);
 			}
 			
             if(this.jdbc != null){
